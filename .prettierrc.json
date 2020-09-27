@@ -1,0 +1,6 @@
+{
+  "prettier.printWidth": 180,
+  "editor.formatOnSave": true,
+  "tabWidth": 2,
+  "bracketSpacing": true
+}
