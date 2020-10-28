@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:56:29
- * @LastEditTime: 2020-09-27 15:14:16
+ * @LastEditTime: 2020-10-28 17:30:05
  * @LastEditors: Tan Xuan
  * @Description: 时间相关函数
  */
@@ -14,10 +14,10 @@ const DAY = 24 * HOUR;
  * @param {number} time 传入剩余秒数时间
  * @returns {object} {天，小时，分，秒}
  */
-export function parseTimeData(time) {
-  let days = (time / DAY) >> 0;
-  let hours = ((time % DAY) / HOUR) >> 0;
-  let mins = ((time % HOUR) / MINUTE) >> 0;
+export function formatSecondToTime(time) {
+  let days = (time / DAY) | 0;
+  let hours = ((time % DAY) / HOUR) | 0;
+  let mins = ((time % HOUR) / MINUTE) | 0;
   let seconds = time % MINUTE;
   return {
     days,
@@ -29,13 +29,13 @@ export function parseTimeData(time) {
 
 /**
  * 格式化时间
- * @param {string} fmt 格式化字符串
+ * @param {string} fmt 格式化字符串 'yyyy-MM-dd hh:mm:ss q(季度) S(毫秒)'
  * @param {date} date 日期时间对象
  * @returns {string} 格式化时间字符串
  */
 export function formatDate(fmt, date) {
-  let tmpDate = date; let 
-    formatter = fmt;
+  let tmpDate = date; 
+  let formatter = fmt;
   if (!tmpDate) {
     tmpDate = new Date();
   }
@@ -73,15 +73,33 @@ export function formatDate(fmt, date) {
 
 /**
  * 计算年龄, 以365天为一年
- * @param {date} birthday 出生日期
- * @returns 当前年龄
+ * @param {string|date} birthday 出生日期
+ * @returns 当前年龄, 年龄单位
  */
 export function calcAge(birthday) {
-  if (birthday) {
-    const now = new Date().getTime();
-    const birth = new Date(birthday).getTime();
-    const age = (now - birth) / (365 * 8.64e5);
-    return Math.floor(age);
+  const time = typeof birthday === 'string' ? new Date(birthday.replace(/-/g, '/')).getTime() : birthday;
+  const now = new Date().getTime();
+  const diff = Math.floor((now - time) / 1000)
+  let age = '', unit = ''
+
+  if (diff < 30 * DAY) {
+    unit = '未满月';
+  } else if (diff < 365 * DAY) {
+    // 小于一年
+    age = (diff / (DAY * 30)) | 0;
+    unit = '个月'
+
+    if (age >= 12) {
+      age = 1
+      unit = '岁'
+    }
+  } else {
+    age = (diff / (DAY * 365)) | 0;
+    unit = '岁';
   }
-  return '';
+
+  return {
+    age,
+    unit
+  }
 }

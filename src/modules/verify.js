@@ -1,20 +1,11 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:34:10
- * @LastEditTime: 2020-09-27 16:40:04
+ * @LastEditTime: 2020-10-28 17:48:05
  * @LastEditors: Tan Xuan
- * @Description: 数字相关函数
+ * @Description: 验证相关函数
  */
 import cardArea from '../config/areaCode';
-/**
- * 返回一个区间内的随机数
- * @param {number} min 起始值
- * @param {number} max 结束值
- * @returns {number} 随机数
- */
-export function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
 
 /**
  * 验证银行卡号是否正确
@@ -58,7 +49,6 @@ export function checkId(id) {
   }
 
   let iSum = 0;
-  let cardInfo = Array(2);
   sId = sId.replace(/x$/i, 'a');
   if (sId.length === 0) {
     return '身份证为空';
@@ -82,12 +72,16 @@ export function checkId(id) {
   }
 
   let age = new Date().getFullYear() - d.getFullYear();
-  cardInfo[0] = cardArea[parseInt(sId.substr(0, 2), 10)];
-  cardInfo[1] = sBirthday;
-  cardInfo[2] = age;
-  cardInfo[3] = sId.substr(16, 1) % 2 ? 1 : 2;
 
-  return cardInfo;
+  return {
+    area: {
+      code: sId.substr(0, 2),
+      value: cardArea[parseInt(sId.substr(0, 2), 10)]
+    },
+    birthday: sBirthday,
+    age,
+    gender: sId.substr(16, 1) % 2 ? 1 : 2
+  };
 }
 
 /**

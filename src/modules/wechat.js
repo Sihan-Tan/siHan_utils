@@ -14,7 +14,7 @@ const shareConfig = {
 /**
  * 微信分享  该方法需要自行安装依赖 weixin-js-sdk
  * @param {function} getSign 获取相关参数的方法或函数 需要返回的对象包含以下几个字段{appId, timestamp, signature, nonceStr}， 如果返回 false 则会中断
- * @param {object} params 微信分享参数
+ * @param {object} params 微信分享参数 {title, desc, imgUrl, link, success}
  * @param {array} list 接口权限列表
  */
 export async function wechatSDK(
@@ -39,8 +39,8 @@ export async function wechatSDK(
     wx.ready(function () {
       wechatShare(wx, payload);
     });
-    wx.error(function (res) {
-      console.error('wx:error: ', res);
+    wx.error(function (err) {
+      console.error('wx:error: ', err);
     });
     return;
   }
