@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-10-28 16:58:10
- * @LastEditTime: 2020-10-29 10:43:47
+ * @LastEditTime: 2020-10-29 18:21:59
  * @LastEditors: Tan Xuan
  * @Description: 格式化相关
  */
@@ -9,58 +9,109 @@
 /**
  * 金额格式化
  * @param {number|string} price 金额
- * @param {number} length 保留小数位
+ * @param {number} length 保留小数位 max = 4, 最多保留4位小数位
  * @returns {string} 格式化好的字符串
  * eg.  parseFormatNum("123456",1); 结果为：123,456.0
  */
-export function formatPrice(price, length) {
-  if (length !== 0) {
-    length = length > 0 && length <= 20 ? length : 2;
-  }
-  const number = parseFloat((price + "").replace(/[^\d\.-]/g, "")).toFixed(length) + "";
-  var sub_val = number.split(".")[0].split("").reverse();
-  var sub_xs = number.split(".")[1];
-
-  var show_html = "";
-  for (let i = 0; i < sub_val.length; i++) {
-    show_html +=
-      sub_val[i] + ((i + 1) % 3 === 0 && i + 1 !== sub_val.length ? "," : "");
-  }
-
-  if (length === 0) {
-    return show_html.split("").reverse().join("");
-  } else {
-    return show_html.split("").reverse().join("") + "." + sub_xs;
-  }
+export function formatPrice(price, len = 0) {
+  const reg = /(\d)(?=(\d{3})+\.)/g;
+  const num = (len === 0 || len === 5) ? 2 : 1
+  return price.toFixed(len + 1).replace(reg, "$1,").slice(0, -num);
 }
 
 /**
- * 将正整数转换成大写
- * @param {number} num 正整数
+ * 阿拉伯数字转换成大写汉字
+ * @param {number} money 正整数
+ * @param {boolean} needI 是否需要 '整' 字分隔
+ * @param {boolean} needY 是否需要 '圆'
  * @returns 大写的整数
  */
-export function formatBigNum(num) {
-  let changeNum = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]; //changeNum[0] = "零"
-  let unit = ["", "十", "百", "千", "万"];
-  num = parseInt(num);
-  let getWan = (temp) => {
-    let strArr = temp.toString().split("").reverse();
-    let newNum = "";
-    for (var i = 0; i < strArr.length; i++) {
-      newNum =
-        (i === 0 && strArr[i] === 0
-          ? ""
-          : i > 0 && strArr[i] === 0 && strArr[i - 1] === 0
-          ? ""
-          : changeNum[strArr[i]] + (strArr[i] === 0 ? unit[0] : unit[i])) +
-        newNum;
+export function formatNumberToChina(money, needI = true, needY = true) {
+  //汉字的数字
+  let cnNums = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+  //基本单位
+  let cnIntRadice = ["", "拾", "佰", "仟"];
+  //对应整数部分扩展单位
+  let cnIntUnits = ["", "万", "亿", "兆"];
+  //对应小数部分单位
+  let cnDecUnits = ["角", "分", "毫", "厘"];
+  //整数金额时后面跟的字符
+  let cnInteger = needI ? "整" : '';
+  //整型完以后的单位
+  let cnIntLast = needY ? "圆" : '';
+  //最大处理的数字
+  let maxNum = 999999999999999.9999;
+  //金额整数部分
+  let integerNum;
+  //金额小数部分
+  let decimalNum;
+  //输出的中文金额字符串
+  let chineseStr = "";
+  //分离金额后用的数组，预定义
+  let parts;
+  if (money === "") {
+    return "";
+  }
+  money = parseFloat(money);
+  if (money >= maxNum) {
+    //超出最大处理数字
+    return "";
+  }
+  if (money === 0) {
+    chineseStr = cnNums[0] + cnIntLast + cnInteger;
+    return chineseStr;
+  }
+  //转换为字符串
+  money = money.toString();
+  if (money.indexOf(".") == -1) {
+    integerNum = money;
+    decimalNum = "";
+  } else {
+    parts = money.split(".");
+    integerNum = parts[0];
+    decimalNum = parts[1].substr(0, 4);
+  }
+  //获取整型部分转换
+  if (parseInt(integerNum, 10) > 0) {
+    let zeroCount = 0;
+    let IntLen = integerNum.length;
+    for (let i = 0; i < IntLen; i++) {
+      let n = integerNum.substr(i, 1);
+      let p = IntLen - i - 1;
+      let q = p / 4;
+      let m = p % 4;
+      if (n == "0") {
+        zeroCount++;
+      } else {
+        if (zeroCount > 0) {
+          chineseStr += cnNums[0];
+        }
+        //归零
+        zeroCount = 0;
+        chineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
+      }
+      if (m == 0 && zeroCount < 4) {
+        chineseStr += cnIntUnits[q];
+      }
     }
-    return newNum;
-  };
-  let overWan = Math.floor(num / 10000);
-  let noWan = num % 10000;
-  if (noWan.toString().length < 4) noWan = "0" + noWan;
-  return overWan ? getWan(overWan) + "万" + getWan(noWan) : getWan(num);
+    chineseStr += cnIntLast;
+  }
+  //小数部分
+  if (decimalNum != "") {
+    let decLen = decimalNum.length;
+    for (let i = 0; i < decLen; i++) {
+      let n = decimalNum.substr(i, 1);
+      if (n != "0") {
+        chineseStr += cnNums[Number(n)] + cnDecUnits[i];
+      }
+    }
+  }
+  if (chineseStr == "") {
+    chineseStr += cnNums[0] + cnIntLast + cnInteger;
+  } else if (decimalNum == "") {
+    chineseStr += cnInteger;
+  }
+  return chineseStr;
 }
 
 /**

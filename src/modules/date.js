@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:56:29
- * @LastEditTime: 2020-10-29 10:39:09
+ * @LastEditTime: 2020-10-29 16:41:38
  * @LastEditors: Tan Xuan
  * @Description: 时间相关函数
  */
@@ -30,7 +30,7 @@ export function formatSecondToTime(time) {
 /**
  * 格式化时间
  * @param {string} fmt 格式化字符串 'yyyy-MM-dd hh:mm:ss q(季度) S(毫秒)'
- * @param {date} date 日期时间对象
+ * @param {date|number} date 日期时间对象|时间戳
  * @returns {string} 格式化时间字符串
  */
 export function formatDate(fmt, date) {

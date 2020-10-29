@@ -22,3 +22,5 @@ git:
 script:
   - npm run build
   - npm run doc
+
+after_success: npm run coverage
