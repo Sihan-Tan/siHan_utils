@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:56:29
- * @LastEditTime: 2020-10-28 17:30:05
+ * @LastEditTime: 2020-10-29 10:39:09
  * @LastEditors: Tan Xuan
  * @Description: 时间相关函数
  */
@@ -12,7 +12,7 @@ const DAY = 24 * HOUR;
 /**
  * 将秒转换成时间
  * @param {number} time 传入剩余秒数时间
- * @returns {object} {天，小时，分，秒}
+ * @returns {object} {天 days，小时 hours，分 mins，秒 seconds}
  */
 export function formatSecondToTime(time) {
   let days = (time / DAY) | 0;
@@ -73,8 +73,8 @@ export function formatDate(fmt, date) {
 
 /**
  * 计算年龄, 以365天为一年
- * @param {string|date} birthday 出生日期
- * @returns 当前年龄, 年龄单位
+ * @param {string|date} birthday 出生日期 格式化的时间字符串(yyyy-MM-dd)或时间对象
+ * @returns {object} 当前年龄 age, 年龄单位 unit
  */
 export function calcAge(birthday) {
   const time = typeof birthday === 'string' ? new Date(birthday.replace(/-/g, '/')).getTime() : birthday;
