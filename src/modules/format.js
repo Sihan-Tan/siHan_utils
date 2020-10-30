@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-10-28 16:58:10
- * @LastEditTime: 2020-10-29 18:21:59
+ * @LastEditTime: 2020-10-30 18:51:50
  * @LastEditors: Tan Xuan
  * @Description: 格式化相关
  */
@@ -55,22 +55,22 @@ export function formatNumberToChina(money, needI = true, needY = true) {
   if (money === '') {
     return '';
   }
-  money = parseFloat(money);
-  if (money >= maxNum) {
+  let curMoney = parseFloat(money);
+  if (curMoney >= maxNum) {
     // 超出最大处理数字
     return '';
   }
-  if (money === 0) {
+  if (curMoney === 0) {
     chineseStr = cnNums[0] + cnIntLast + cnInteger;
     return chineseStr;
   }
   // 转换为字符串
-  money = money.toString();
-  if (money.indexOf('.') == -1) {
-    integerNum = money;
+  curMoney = curMoney.toString();
+  if (curMoney.indexOf('.') === -1) {
+    integerNum = curMoney;
     decimalNum = '';
   } else {
-    parts = money.split('.');
+    parts = curMoney.split('.');
     integerNum = parts[0];
     decimalNum = parts[1].substr(0, 4);
   }
@@ -83,7 +83,7 @@ export function formatNumberToChina(money, needI = true, needY = true) {
       let p = IntLen - i - 1;
       let q = p / 4;
       let m = p % 4;
-      if (n == '0') {
+      if (n === '0') {
         zeroCount++;
       } else {
         if (zeroCount > 0) {
@@ -91,27 +91,27 @@ export function formatNumberToChina(money, needI = true, needY = true) {
         }
         // 归零
         zeroCount = 0;
-        chineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
+        chineseStr += cnNums[parseInt(n, 10)] + cnIntRadice[m];
       }
-      if (m == 0 && zeroCount < 4) {
+      if (m === 0 && zeroCount < 4) {
         chineseStr += cnIntUnits[q];
       }
     }
     chineseStr += cnIntLast;
   }
   // 小数部分
-  if (decimalNum != '') {
+  if (decimalNum !== '') {
     let decLen = decimalNum.length;
     for (let i = 0; i < decLen; i++) {
       let n = decimalNum.substr(i, 1);
-      if (n != '0') {
+      if (n !== '0') {
         chineseStr += cnNums[Number(n)] + cnDecUnits[i];
       }
     }
   }
-  if (chineseStr == '') {
+  if (chineseStr === '') {
     chineseStr += cnNums[0] + cnIntLast + cnInteger;
-  } else if (decimalNum == '') {
+  } else if (decimalNum === '') {
     chineseStr += cnInteger;
   }
   return chineseStr;

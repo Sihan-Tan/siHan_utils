@@ -22,7 +22,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "clean": "rimraf lib",
     "build": "npm run clean && rollup --config rollup.config.js",
-    "format": "prettier-eslint \"src/**/*.js\" --write",
+    "format": "eslint \"src/**/*.js\" --fix",
     "doc": "jsdoc -c ./conf.json"
   },
   "pre-commit": [
