@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:34:10
- * @LastEditTime: 2020-10-28 17:48:05
+ * @LastEditTime: 2020-10-30 16:27:32
  * @LastEditors: Tan Xuan
  * @Description: 验证相关函数
  */
@@ -39,27 +39,23 @@ export function checkEmail(email) {
  * @returns {string|object} 错误提示| [地区，生日，年龄，性别（1男，2女）]
  */
 export function checkId(id) {
-  let sId = id;
+  let sId = `${id}`;
   if (!sId) {
     return '请输入证件号码';
   }
-  sId = String(sId);
   if (!sId.match(/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/gi)) {
     return '身份证号格式不正确';
   }
 
   let iSum = 0;
   sId = sId.replace(/x$/i, 'a');
-  if (sId.length === 0) {
-    return '身份证为空';
-  }
 
   if (cardArea[parseInt(sId.substr(0, 2), 10)] == null) {
     return '地区填写有误';
   }
-  let sBirthday = sId.substr(6, 4) + '/' + Number(sId.substr(10, 2)) + '/' + Number(sId.substr(12, 2));
-  let d = new Date(sBirthday);
-  if (sBirthday !== d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate()) {
+  let sBirthday = sId.substr(6, 4) + '-' + Number(sId.substr(10, 2)) + '-' + Number(sId.substr(12, 2));
+  let d = new Date(sBirthday.replace(/-/g, '/'));
+  if (sBirthday !== d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()) {
     return '生日有误';
   }
 
@@ -67,7 +63,7 @@ export function checkId(id) {
     iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
   }
 
-  if (iSum % 11 !== 1 || sId.length > 19) {
+  if (iSum % 11 !== 1) {
     return '非法证号';
   }
 
@@ -90,5 +86,5 @@ export function checkId(id) {
  * @returns {boolean}
  */
 export function checkPhone(phone) {
-  return phone.match(/^1\d{10}$/gi);
+  return /^1\d{10}$/gi.test(phone)
 }

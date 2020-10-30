@@ -38,11 +38,28 @@ describe('format.js', function() {
         it('money为123456789', function() {
             expect(formatNumberToChina(intMoney)).to.equal('壹亿贰仟叁佰肆拾伍万陆仟柒佰捌拾玖圆整')
         })
-        it('默认情况', function() {
+        it('默认情况 123456789.1234', function() {
             expect(formatNumberToChina(money)).to.equal('壹亿贰仟叁佰肆拾伍万陆仟柒佰捌拾玖圆壹角贰分叁毫肆厘')
+        })
+        it('只有小数位 0.1234', function() {
+            expect(formatNumberToChina(0.1234)).to.equal('壹角贰分叁毫肆厘')
+        })
+        it('普通数值 10.1234', function() {
+            expect(formatNumberToChina(10.1234)).to.equal('壹拾圆壹角贰分叁毫肆厘')
+        })
+        it('普通数值 100.1234', function() {
+            expect(formatNumberToChina(100.1234)).to.equal('壹佰圆壹角贰分叁毫肆厘')
+        })
+        it('普通数值 1010.1234', function() {
+            expect(formatNumberToChina(1010.1234)).to.equal('壹仟零壹拾圆壹角贰分叁毫肆厘')
+        })
+        it('普通数值 0', function() {
+            expect(formatNumberToChina(0, false, false)).to.equal('零')
         })
     })
     describe('formatBankNumber', function() {
-
+        it('格式化银行卡号码', function() {
+            expect(formatBankNumber('6216002020203245865')).to.equal('6216 0020 2020 3245 865')
+        })
     })
 })

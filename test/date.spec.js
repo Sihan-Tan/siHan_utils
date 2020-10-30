@@ -34,8 +34,9 @@ describe('date.js', function() {
   });
 
   describe('formatDate', function() {
-    const CUR_DATE = '2020-10-29';
-    const CUR_MONTH_DAY = '10-29';
+    const curTime = new Date();
+    const CUR_DATE = `${curTime.getFullYear()}-${curTime.getMonth()+1}-${curTime.getDate()}`;
+    const CUR_MONTH_DAY = `${curTime.getMonth()+1}-${curTime.getDate()}`;
       it('测试返回yyyy-MM-dd', function() {
         const fmt = 'yyyy-MM-dd';
         expect(formatDate(fmt)).to.equal(CUR_DATE)
@@ -71,8 +72,13 @@ describe('date.js', function() {
       expect(age).to.equal(3)
       expect(unit).to.equal('个月')
     })
+    it('11个月', function() {
+      const {age, unit} = calcAge('2019-12-03')
+      expect(age).to.equal(11)
+      expect(unit).to.equal('个月')
+    })
     it('1岁', function() {
-      const {age, unit} = calcAge('2019-10-31')
+      const {age, unit} = calcAge('2019-11-03')
       expect(age).to.equal(1)
       expect(unit).to.equal('岁')
     })
