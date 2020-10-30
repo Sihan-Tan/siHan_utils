@@ -13,12 +13,15 @@ import cardArea from '../config/areaCode';
  * @returns {boolean}
  */
 export function checkBank(num) {
-  const arr = (String(num))
+  const arr = String(num)
     .split('')
     .reverse()
     .map((x) => parseInt(x, 10));
   const lastDigit = arr.splice(0, 1)[0];
-  let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+  let sum = arr.reduce(
+    (acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9),
+    0
+  );
   sum += lastDigit;
   return sum % 10 === 0;
 }
@@ -53,9 +56,17 @@ export function checkId(id) {
   if (cardArea[parseInt(sId.substr(0, 2), 10)] == null) {
     return '地区填写有误';
   }
-  let sBirthday = sId.substr(6, 4) + '-' + Number(sId.substr(10, 2)) + '-' + Number(sId.substr(12, 2));
+  let sBirthday =
+    sId.substr(6, 4) +
+    '-' +
+    Number(sId.substr(10, 2)) +
+    '-' +
+    Number(sId.substr(12, 2));
   let d = new Date(sBirthday.replace(/-/g, '/'));
-  if (sBirthday !== d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()) {
+  if (
+    sBirthday !==
+    d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+  ) {
     return '生日有误';
   }
 
@@ -72,11 +83,11 @@ export function checkId(id) {
   return {
     area: {
       code: sId.substr(0, 2),
-      value: cardArea[parseInt(sId.substr(0, 2), 10)]
+      value: cardArea[parseInt(sId.substr(0, 2), 10)],
     },
     birthday: sBirthday,
     age,
-    gender: sId.substr(16, 1) % 2 ? 1 : 2
+    gender: sId.substr(16, 1) % 2 ? 1 : 2,
   };
 }
 
@@ -86,5 +97,5 @@ export function checkId(id) {
  * @returns {boolean}
  */
 export function checkPhone(phone) {
-  return /^1\d{10}$/gi.test(phone)
+  return /^1\d{10}$/gi.test(phone);
 }

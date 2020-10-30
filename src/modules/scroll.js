@@ -33,7 +33,7 @@ export function getRootScrollTop() {
 
 /**
  * 获取根节点的scrollTop
- * @param {number} value 
+ * @param {number} value
  */
 export function setRootScrollTop(value) {
   setScrollTop(window, value);

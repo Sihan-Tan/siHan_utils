@@ -22,5 +22,5 @@ module.exports = {
   scroll,
   userAgent,
   verify,
-  wechat
+  wechat,
 };

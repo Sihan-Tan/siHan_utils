@@ -15,7 +15,8 @@
 export function setCookie(name, value, day = 30) {
   let exp = new Date();
   exp.setTime(exp.getTime() + day * 8.64e5);
-  document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString();
+  document.cookie =
+    name + '=' + escape(value) + ';expires=' + exp.toGMTString();
 }
 
 /**
@@ -26,7 +27,7 @@ export function setCookie(name, value, day = 30) {
 export function getCookie(name) {
   let arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
   if (arr != null) {
-    return (arr[2]);
+    return arr[2];
   } else {
     return '';
   }

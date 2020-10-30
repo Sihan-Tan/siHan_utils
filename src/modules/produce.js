@@ -13,6 +13,5 @@
  * @returns {number} 随机整数
  */
 export function randomNumber(min, max) {
-    return (Math.random() * (max - min + 1) + min) | 0;
-  }
-  
+  return (Math.random() * (max - min + 1) + min) | 0;
+}

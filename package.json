@@ -1,24 +1,34 @@
 {
   "name": "siHan_utils",
-  "version": "0.0.1",
-  "description": "Some methods often used",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "version": "1.0.0",
+  "description": "Library of tools commonly used in work",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sihan-Tan/siHan_utils.git"
   },
+  "bugs": {
+    "url": "https://github.com/Sihan-Tan/siHan_utils/issues"
+  },
+  "homepage": "https://github.com/Sihan-Tan/siHan_utils#readme",
+  "keywords": [
+    "utils",
+    "tools",
+    "helper",
+    "nodejs"
+  ],
   "scripts": {
     "test": "nyc mocha --config .mocharc.json",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "clean": "rimraf $PWD'/lib'",
+    "clean": "rimraf lib",
     "build": "npm run clean && rollup --config rollup.config.js",
-    "format": "prettier-eslint $PWD'/src/**/*.js' --write",
+    "format": "prettier-eslint \"src/**/*.js\" --write",
     "doc": "jsdoc -c ./conf.json"
   },
   "pre-commit": [
     "format",
     "test"
   ],
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -30,7 +40,7 @@
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
-    "eslint": "^7.10.0",
+    "eslint": "^5.16.0",
     "eslint-friendly-formatter": "^4.0.1",
     "jsdoc": "^3.6.6",
     "mocha": "^8.2.0",

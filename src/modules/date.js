@@ -34,7 +34,7 @@ export function formatSecondToTime(time) {
  * @returns {string} 格式化时间字符串
  */
 export function formatDate(fmt, date) {
-  let tmpDate = date; 
+  let tmpDate = date;
   let formatter = fmt;
   if (!tmpDate) {
     tmpDate = new Date();
@@ -56,7 +56,7 @@ export function formatDate(fmt, date) {
   if (/(y+)/.test(formatter)) {
     formatter = formatter.replace(
       RegExp.$1,
-      (String(tmpDate.getFullYear())).substr(4 - RegExp.$1.length)
+      String(tmpDate.getFullYear()).substr(4 - RegExp.$1.length)
     );
   }
   for (let k in o) {
@@ -64,7 +64,9 @@ export function formatDate(fmt, date) {
       // 根据要求补0
       formatter = formatter.replace(
         RegExp.$1,
-        RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr((String(o[k])).length)
+        RegExp.$1.length === 1
+          ? o[k]
+          : ('00' + o[k]).substr(String(o[k]).length)
       );
     }
   }
@@ -77,21 +79,25 @@ export function formatDate(fmt, date) {
  * @returns {object} 当前年龄 age, 年龄单位 unit
  */
 export function calcAge(birthday) {
-  const time = typeof birthday === 'string' ? new Date(birthday.replace(/-/g, '/')).getTime() : birthday;
+  const time =
+    typeof birthday === 'string'
+      ? new Date(birthday.replace(/-/g, '/')).getTime()
+      : birthday;
   const now = new Date().getTime();
-  const diff = Math.floor((now - time) / 1000)
-  let age = '', unit = ''
+  const diff = Math.floor((now - time) / 1000);
+  let age = '';
+  let unit = '';
 
   if (diff < 30 * DAY) {
     unit = '未满月';
   } else if (diff < 365 * DAY) {
     // 小于一年
     age = (diff / (DAY * 30)) | 0;
-    unit = '个月'
+    unit = '个月';
 
     if (age >= 12) {
-      age = 1
-      unit = '岁'
+      age = 1;
+      unit = '岁';
     }
   } else {
     age = (diff / (DAY * 365)) | 0;
@@ -100,6 +106,6 @@ export function calcAge(birthday) {
 
   return {
     age,
-    unit
-  }
+    unit,
+  };
 }

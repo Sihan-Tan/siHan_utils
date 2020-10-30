@@ -7,36 +7,36 @@
  */
 /**
  * 是不是微信
- * @returns {boolean} 
+ * @returns {boolean}
  */
 export function isWeChat(ua) {
-  const userAgent = global.navigator.userAgent || ua
+  const userAgent = global.navigator.userAgent || ua;
   return userAgent.match(/MicroMessenger/i) ? true : false;
 }
 
 /**
  * 是不是安卓
- * @returns {boolean} 
+ * @returns {boolean}
  */
 export function isAndroid(ua) {
-  const userAgent = global.navigator.userAgent || ua
+  const userAgent = global.navigator.userAgent || ua;
   return userAgent.match(/Android/i) ? true : false;
 }
 
 /**
  * 是不是苹果
- * @returns {boolean} 
+ * @returns {boolean}
  */
 export function isIOS(ua) {
-  const userAgent = global.navigator.userAgent || ua
+  const userAgent = global.navigator.userAgent || ua;
   return userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
 }
 
 /**
  * 是不是移动端
- * @returns {boolean} 
+ * @returns {boolean}
  */
 export function isMobile(ua) {
-  const userAgent = global.navigator.userAgent || ua
+  const userAgent = global.navigator.userAgent || ua;
   return userAgent.match(/Mobile/i) ? true : false;
 }
