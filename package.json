@@ -1,14 +1,11 @@
 {
-  "name": "siHan_utils",
-  "version": "1.0.1",
+  "name": "sihan-utils",
+  "version": "1.0.0",
   "description": "Library of tools commonly used in work",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sihan-Tan/siHan_utils.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "bugs": {
     "url": "https://github.com/Sihan-Tan/siHan_utils/issues"
@@ -32,7 +29,7 @@
     "format",
     "test"
   ],
-  "author": "",
+  "author": "sihan-tan",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
