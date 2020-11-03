@@ -10,6 +10,14 @@ os:
   - osx
   - windows
 
+deploy:
+  provider: npm
+  email: tanxuan_2013@163.com
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
+  on:
+    branch: master
+
 cache: npm
 
 install:

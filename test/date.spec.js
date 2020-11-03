@@ -35,7 +35,7 @@ describe('date.js', function() {
 
   describe('formatDate', function() {
     const curTime = new Date();
-    const CUR_DATE = `${curTime.getFullYear()}-${curTime.getMonth()+1}-${curTime.getDate()}`;
+    const CUR_DATE = `${curTime.getFullYear()}-${curTime.getMonth()+1}-${curTime.getDate() > 9 ? curTime.getDate() : '0' + curTime.getDate()}`;
     const CUR_MONTH_DAY = `${curTime.getMonth()+1}-${curTime.getDate()}`;
       it('测试返回yyyy-MM-dd', function() {
         const fmt = 'yyyy-MM-dd';

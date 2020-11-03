@@ -1,5 +1,5 @@
 {
-  "name": "siHan_utils",
+  "name": "siHan-utils",
   "version": "1.0.0",
   "description": "Library of tools commonly used in work",
   "main": "lib/index.js",
