@@ -17,3 +17,8 @@ This utils can help you do something such as formatDate, produceRadom and so on.
 
 https://github.com/Sihan-Tan/siHan_utils/tree/master/wiki.md
 
+# Example
+```javascript
+import { randomNumber } from 'sihan-utils';
+console.log(randomNumber(1, 100)); // a number between 1 and 100
+```
