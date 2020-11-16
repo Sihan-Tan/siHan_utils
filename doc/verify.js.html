@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: verify.js | sihan-utils</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+        
+            <link type="text/css" rel="stylesheet" href="custom.css">
+        
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 140px; height: 50px">
+        
+            <a href="https://www.npmjs.com/package/filemanager-plugin" rel="noopener noreferrer" target="_blank">
+                <img src="./logo.png" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">sihan-utils</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#calcAge">calcAge</a></li><li><a href="global.html#checkBank">checkBank</a></li><li><a href="global.html#checkEmail">checkEmail</a></li><li><a href="global.html#checkId">checkId</a></li><li><a href="global.html#checkPhone">checkPhone</a></li><li><a href="global.html#deleteCookie">deleteCookie</a></li><li><a href="global.html#formatBankNumber">formatBankNumber</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatNumberToChina">formatNumberToChina</a></li><li><a href="global.html#formatPrice">formatPrice</a></li><li><a href="global.html#formatSecondToTime">formatSecondToTime</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#getElementTop">getElementTop</a></li><li><a href="global.html#getRootScrollTop">getRootScrollTop</a></li><li><a href="global.html#getScrollTop">getScrollTop</a></li><li><a href="global.html#getVisibleHeight">getVisibleHeight</a></li><li><a href="global.html#getVisibleTop">getVisibleTop</a></li><li><a href="global.html#isAndroid">isAndroid</a></li><li><a href="global.html#isIOS">isIOS</a></li><li><a href="global.html#isMobile">isMobile</a></li><li><a href="global.html#isWeChat">isWeChat</a></li><li><a href="global.html#randomNumber">randomNumber</a></li><li><a href="global.html#setCookie">setCookie</a></li><li><a href="global.html#setRootScrollTop">setRootScrollTop</a></li><li><a href="global.html#setScrollTop">setScrollTop</a></li><li><a href="global.html#wechatSDK">wechatSDK</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ * @Author: Tan Xuan
+ * @Date: 2020-09-24 11:34:10
+ * @LastEditTime: 2020-10-30 16:27:32
+ * @LastEditors: Tan Xuan
+ * @Description: 验证相关函数
+ */
+import cardArea from '../config/areaCode';
+
+/**
+ * 验证银行卡号是否正确
+ * @param {string} number 银行卡号
+ * @returns {boolean}
+ */
+export function checkBank(num) {
+  const arr = String(num)
+    .split('')
+    .reverse()
+    .map((x) => parseInt(x, 10));
+  const lastDigit = arr.splice(0, 1)[0];
+  let sum = arr.reduce(
+    (acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9),
+    0
+  );
+  sum += lastDigit;
+  return sum % 10 === 0;
+}
+
+/**
+ * 验证邮箱是否正确
+ * @param {email} email 邮箱
+ * @returns {boolean}
+ */
+export function checkEmail(email) {
+  const ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  return ePattern.test(email);
+}
+
+/**
+ * 检验身份证是否正确
+ * @param {string} id 身份证号码
+ * @returns {string|object} 错误提示| [地区，生日，年龄，性别（1男，2女）]
+ */
+export function checkId(id) {
+  let sId = `${id}`;
+  if (!sId) {
+    return '请输入证件号码';
+  }
+  if (!sId.match(/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/gi)) {
+    return '身份证号格式不正确';
+  }
+
+  let iSum = 0;
+  sId = sId.replace(/x$/i, 'a');
+
+  if (cardArea[parseInt(sId.substr(0, 2), 10)] == null) {
+    return '地区填写有误';
+  }
+  let sBirthday =
+    sId.substr(6, 4) +
+    '-' +
+    Number(sId.substr(10, 2)) +
+    '-' +
+    Number(sId.substr(12, 2));
+  let d = new Date(sBirthday.replace(/-/g, '/'));
+  if (
+    sBirthday !==
+    d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+  ) {
+    return '生日有误';
+  }
+
+  for (let i = 17; i >= 0; i--) {
+    iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
+  }
+
+  if (iSum % 11 !== 1) {
+    return '非法证号';
+  }
+
+  let age = new Date().getFullYear() - d.getFullYear();
+
+  return {
+    area: {
+      code: sId.substr(0, 2),
+      value: cardArea[parseInt(sId.substr(0, 2), 10)],
+    },
+    birthday: sBirthday,
+    age,
+    gender: sId.substr(16, 1) % 2 ? 1 : 2,
+  };
+}
+
+/**
+ * 检验手机号是否正确
+ * @param {string} phone 手机号
+ * @returns {boolean}
+ */
+export function checkPhone(phone) {
+  return /^1\d{10}$/gi.test(phone);
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="./logo.png" style="width: 140px; height: 50px">
+    <div class="footer-text">Api doc</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

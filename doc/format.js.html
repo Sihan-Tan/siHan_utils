@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: format.js | sihan-utils</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+        
+            <link type="text/css" rel="stylesheet" href="custom.css">
+        
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 140px; height: 50px">
+        
+            <a href="https://www.npmjs.com/package/filemanager-plugin" rel="noopener noreferrer" target="_blank">
+                <img src="./logo.png" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">sihan-utils</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#calcAge">calcAge</a></li><li><a href="global.html#checkBank">checkBank</a></li><li><a href="global.html#checkEmail">checkEmail</a></li><li><a href="global.html#checkId">checkId</a></li><li><a href="global.html#checkPhone">checkPhone</a></li><li><a href="global.html#deleteCookie">deleteCookie</a></li><li><a href="global.html#formatBankNumber">formatBankNumber</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatNumberToChina">formatNumberToChina</a></li><li><a href="global.html#formatPrice">formatPrice</a></li><li><a href="global.html#formatSecondToTime">formatSecondToTime</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#getElementTop">getElementTop</a></li><li><a href="global.html#getRootScrollTop">getRootScrollTop</a></li><li><a href="global.html#getScrollTop">getScrollTop</a></li><li><a href="global.html#getVisibleHeight">getVisibleHeight</a></li><li><a href="global.html#getVisibleTop">getVisibleTop</a></li><li><a href="global.html#isAndroid">isAndroid</a></li><li><a href="global.html#isIOS">isIOS</a></li><li><a href="global.html#isMobile">isMobile</a></li><li><a href="global.html#isWeChat">isWeChat</a></li><li><a href="global.html#randomNumber">randomNumber</a></li><li><a href="global.html#setCookie">setCookie</a></li><li><a href="global.html#setRootScrollTop">setRootScrollTop</a></li><li><a href="global.html#setScrollTop">setScrollTop</a></li><li><a href="global.html#wechatSDK">wechatSDK</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ * @Author: Tan Xuan
+ * @Date: 2020-10-28 16:58:10
+ * @LastEditTime: 2020-10-30 18:51:50
+ * @LastEditors: Tan Xuan
+ * @Description: 格式化相关
+ */
+
+/**
+ * 金额格式化
+ * @param {number|string} price 金额
+ * @param {number} length 保留小数位 max = 4, 最多保留4位小数位
+ * @returns {string} 格式化好的字符串
+ * eg.  parseFormatNum("123456",1); 结果为：123,456.0
+ */
+export function formatPrice(price, len = 0) {
+  const reg = /(\d)(?=(\d{3})+\.)/g;
+  const num = len === 0 || len === 5 ? 2 : 1;
+  return price
+    .toFixed(len + 1)
+    .replace(reg, '$1,')
+    .slice(0, -num);
+}
+
+/**
+ * 阿拉伯数字转换成大写汉字
+ * @param {number} money 正整数
+ * @param {boolean} needI 是否需要 '整' 字分隔
+ * @param {boolean} needY 是否需要 '圆'
+ * @returns 大写的整数
+ */
+export function formatNumberToChina(money, needI = true, needY = true) {
+  // 汉字的数字
+  let cnNums = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+  // 基本单位
+  let cnIntRadice = ['', '拾', '佰', '仟'];
+  // 对应整数部分扩展单位
+  let cnIntUnits = ['', '万', '亿', '兆'];
+  // 对应小数部分单位
+  let cnDecUnits = ['角', '分', '毫', '厘'];
+  // 整数金额时后面跟的字符
+  let cnInteger = needI ? '整' : '';
+  // 整型完以后的单位
+  let cnIntLast = needY ? '圆' : '';
+  // 最大处理的数字
+  let maxNum = 999999999999999.9999;
+  // 金额整数部分
+  let integerNum;
+  // 金额小数部分
+  let decimalNum;
+  // 输出的中文金额字符串
+  let chineseStr = '';
+  // 分离金额后用的数组，预定义
+  let parts;
+  if (money === '') {
+    return '';
+  }
+  let curMoney = parseFloat(money);
+  if (curMoney >= maxNum) {
+    // 超出最大处理数字
+    return '';
+  }
+  if (curMoney === 0) {
+    chineseStr = cnNums[0] + cnIntLast + cnInteger;
+    return chineseStr;
+  }
+  // 转换为字符串
+  curMoney = curMoney.toString();
+  if (curMoney.indexOf('.') === -1) {
+    integerNum = curMoney;
+    decimalNum = '';
+  } else {
+    parts = curMoney.split('.');
+    integerNum = parts[0];
+    decimalNum = parts[1].substr(0, 4);
+  }
+  // 获取整型部分转换
+  if (parseInt(integerNum, 10) > 0) {
+    let zeroCount = 0;
+    let IntLen = integerNum.length;
+    for (let i = 0; i &lt; IntLen; i++) {
+      let n = integerNum.substr(i, 1);
+      let p = IntLen - i - 1;
+      let q = p / 4;
+      let m = p % 4;
+      if (n === '0') {
+        zeroCount++;
+      } else {
+        if (zeroCount > 0) {
+          chineseStr += cnNums[0];
+        }
+        // 归零
+        zeroCount = 0;
+        chineseStr += cnNums[parseInt(n, 10)] + cnIntRadice[m];
+      }
+      if (m === 0 &amp;&amp; zeroCount &lt; 4) {
+        chineseStr += cnIntUnits[q];
+      }
+    }
+    chineseStr += cnIntLast;
+  }
+  // 小数部分
+  if (decimalNum !== '') {
+    let decLen = decimalNum.length;
+    for (let i = 0; i &lt; decLen; i++) {
+      let n = decimalNum.substr(i, 1);
+      if (n !== '0') {
+        chineseStr += cnNums[Number(n)] + cnDecUnits[i];
+      }
+    }
+  }
+  if (chineseStr === '') {
+    chineseStr += cnNums[0] + cnIntLast + cnInteger;
+  } else if (decimalNum === '') {
+    chineseStr += cnInteger;
+  }
+  return chineseStr;
+}
+
+/**
+ * 将银行卡号格式化
+ * @param {string} value 银行卡号码
+ * @returns 格式化的银行卡号码
+ */
+export function formatBankNumber(value) {
+  return value
+    .replace(/\s/g, '')
+    .replace(/[^\d]/g, '')
+    .replace(/(\d{4})(?=\d)/g, '$1 ');
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="./logo.png" style="width: 140px; height: 50px">
+    <div class="footer-text">Api doc</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
