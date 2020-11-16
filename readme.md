@@ -15,7 +15,7 @@ This utils can help you do something such as formatDate, produceRadom and so on.
 
 # document
 
-https://github.com/Sihan-Tan/siHan_utils/tree/master/wiki.md
+https://github.com/Sihan-Tan/siHan_utils/blob/master/wiki.md
 
 # Example
 ```javascript

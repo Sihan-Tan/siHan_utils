@@ -15,9 +15,9 @@ cache: npm
 install:
   - npm install
 
-# git:
-#   quiet: true
-#   depth: 1
+git:
+  quiet: true
+  depth: 1
 
 stages:
   - test
