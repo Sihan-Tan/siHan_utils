@@ -54,9 +54,6 @@ jobs:
       - npm run build
       - echo "Build End..."
 
-    before_deploy:
-      - cd lib
-      
     deploy:
       provider: npm
       email: tanxuan_2013@163.com
