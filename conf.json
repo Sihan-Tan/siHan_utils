@@ -8,7 +8,7 @@
   },
   "plugins": ["plugins/markdown"],
   "markdown": {
-    "tags": ["file"], 
+    "tags": ["file"],
     "excludeTags": ["author"],
     "hardwrap": true
   },
@@ -22,7 +22,7 @@
   },
   "opts": {
     "template": "node_modules/tui-jsdoc-template",
-    "destination": "./doc",
+    "destination": "./docs",
     "recurse": true
   }
 }

@@ -24,7 +24,7 @@
     "build": "npm run clean && rollup --config rollup.config.js",
     "format": "eslint \"src/**/*.js\" --fix",
     "doc": "jsdoc -c ./conf.json",
-    "jsdoc": "jsdoc2md src/**/*.* > wiki.md"
+    "jsdoc": "jsdoc2md src/**/*.* > ./docs/index.md"
   },
   "pre-commit": [
     "format",
