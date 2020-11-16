@@ -30,7 +30,7 @@
     "test"
   ],
   "author": "sihan-tan",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1",
