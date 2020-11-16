@@ -1,6 +1,6 @@
 {
   "name": "sihan-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Library of tools commonly used in work",
   "main": "lib/index.js",
   "repository": {
