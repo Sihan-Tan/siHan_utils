@@ -38,7 +38,7 @@ jobs:
     - stage: doc
     script:
       - echo "JsDoc Start ..."
-      - npm run doc
+      - npm run jsdoc
       - echo "JsDoc End..."
 
     - stage: coverage

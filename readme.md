@@ -13,7 +13,7 @@ This utils can help you do something such as formatDate, produceRadom and so on.
 # Installation
 `npm install --save sihan-utils`
 
-# documentation
+# document
 
-https://github.com/Sihan-Tan/siHan_utils/tree/master/doc/index.html
+https://github.com/Sihan-Tan/siHan_utils/tree/master/wiki.md
 

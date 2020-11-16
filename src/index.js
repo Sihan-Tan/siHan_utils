@@ -1,26 +1,56 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:21:11
- * @LastEditTime: 2020-10-28 17:52:25
+ * @LastEditTime: 2020-11-16 17:05:26
  * @LastEditors: Tan Xuan
  * @Description: 出口文件
  */
-import * as cookie from './modules/cookie';
-import * as date from './modules/date';
-import * as format from './modules/format';
-import * as produce from './modules/produce';
-import * as scroll from './modules/scroll';
-import * as userAgent from './modules/userAgent';
-import * as verify from './modules/verify';
-import * as wechat from './modules/wechat';
+import { setCookie, getCookie, deleteCookie } from './modules/cookie';
+import { formatSecondToTime, formatDate, calcAge } from './modules/date';
+import {
+  formatPrice,
+  formatNumberToChina,
+  formatBankNumber,
+} from './modules/format';
+import { randomNumber } from './modules/produce';
+import {
+  getScrollTop,
+  setScrollTop,
+  getRootScrollTop,
+  setRootScrollTop,
+  getElementTop,
+  getVisibleHeight,
+  getVisibleTop,
+} from './modules/scroll';
+import { isWeChat, isAndroid, isIOS, isMobile } from './modules/userAgent';
+import { checkBank, checkEmail, checkId, checkPhone } from './modules/verify';
+import { wechatSDK } from './modules/wechat';
 
 module.exports = {
-  cookie,
-  date,
-  format,
-  produce,
-  scroll,
-  userAgent,
-  verify,
-  wechat,
+  setCookie,
+  getCookie,
+  deleteCookie,
+  formatSecondToTime,
+  formatDate,
+  calcAge,
+  formatPrice,
+  formatNumberToChina,
+  formatBankNumber,
+  randomNumber,
+  getScrollTop,
+  setScrollTop,
+  getRootScrollTop,
+  setRootScrollTop,
+  getElementTop,
+  getVisibleHeight,
+  getVisibleTop,
+  isWeChat,
+  isAndroid,
+  isIOS,
+  isMobile,
+  checkBank,
+  checkEmail,
+  checkId,
+  checkPhone,
+  wechatSDK,
 };

@@ -1,31 +1,24 @@
 {
   "tags": {
-    "allowUnknownTags": true,
-    "dictionaries": ["jsdoc", "closure"]
+    "allowUnknownTags": true
   },
   "source": {
     "include": ["./src"],
     "includePattern": ".+\\.js(doc)?$"
   },
   "plugins": ["plugins/markdown"],
+  "markdown": {
+    "tags": ["file"], 
+    "excludeTags": ["author"],
+    "hardwrap": true
+  },
   "templates": {
-    "cleverLinks": true,
+    "cleverLinks": false,
+    "outputSourceFiles": false,
+    "outputSourcePath": false,
     "monospaceLinks": true,
     "useCollapsibles": true,
-    "logo": {
-      "url": "./logo.png",
-      "width": "140px",
-      "height": "50px",
-      "link": "https://www.npmjs.com/package/filemanager-plugin"
-    },
-    "name": "sihan-utils",
-    "footerText": "Api doc",
-    "default": {
-      "staticFiles": {
-        "include": ["./styles/logo.png", "./styles/custom.css"]
-      }
-    },
-    "css": ["custom.css"]
+    "name": "sihan-utils"
   },
   "opts": {
     "template": "node_modules/tui-jsdoc-template",
