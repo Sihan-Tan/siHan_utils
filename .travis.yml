@@ -19,47 +19,62 @@ git:
   quiet: true
   depth: 1
 
-stages:
-  - test
-  - doc
-  - coverage
-  - name: deploy
+script:
+  - npm run doc
+  - npm run build
 
-jobs:
-  include: 
-    - stage: test
-    script:
-      - node --version
-      - npm --version
-      - echo "Testing Start ..."
-      - npm run test
-      - echo "Testing End..."
+deploy:
+  provider: npm
+  email: tanxuan_2013@163.com
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
+  keep-history: true
+  local-dir: lib
+  on:
+    branch: master
 
-    - stage: doc
-    script:
-      - echo "JsDoc Start ..."
-      - npm run jsdoc
-      - echo "JsDoc End..."
+after_deploy: npm run coverage
+# stages:
+#   - test
+#   - doc
+#   - coverage
+#   - name: deploy
 
-    - stage: coverage
-    script:
-      - echo "Coverage Start..."
-      - npm run coverage
-      - echo "Coverage End..."
+# jobs:
+#   include:
+#     - stage: test
+#     script:
+#       - node --version
+#       - npm --version
+#       - echo "Testing Start ..."
+#       - npm run test
+#       - echo "Testing End..."
 
-    - stage: deploy
-    script:
-      - echo "Build Start..."
-      - npm --version
-      - npm run build
-      - echo "Build End..."
+#     - stage: doc
+#     script:
+#       - echo "JsDoc Start ..."
+#       - npm run jsdoc
+#       - echo "JsDoc End..."
 
-    deploy:
-      provider: npm
-      email: tanxuan_2013@163.com
-      api_key: "$NPM_TOKEN"
-      skip_cleanup: true
-      keep-history: true
-      local-dir: lib
-      on:
-        branch: master
+#     - stage: coverage
+#     script:
+#       - echo "Coverage Start..."
+#       - npm run coverage
+#       - echo "Coverage End..."
+
+#     - stage: deploy
+#     script:
+#       - echo "Build Start..."
+#       - npm --version
+#       - npm run build
+#       - echo "Build End..."
+
+#     deploy:
+#       provider: npm
+#       email: tanxuan_2013@163.com
+#       api_key: "$NPM_TOKEN"
+#       skip_cleanup: true
+#       keep-history: true
+#       local-dir: lib
+#       on:
+#         branch: master
