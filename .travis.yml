@@ -22,6 +22,8 @@ git:
 script:
   - npm run doc
   - npm run build
+  
+after_success: npm run coverage
 
 # deploy:
 #   provider: npm
@@ -33,7 +35,6 @@ script:
 #   on:
 #     branch: master
 
-after_deploy: npm run coverage
 # stages:
 #   - test
 #   - doc
