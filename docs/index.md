@@ -359,7 +359,7 @@ eg.  parseFormatNum("123456",1); 结果为：123,456.0
 
 | Param | Type | Description |
 | --- | --- | --- |
-| wx | <code>object</code> | wx sdk , import wx from 'weixin-js-sdk' 传入这个 wx |
+| wx | <code>object</code> | import wx from 'weixin-js-sdk' 传入这个 wx |
 | getSign | <code>function</code> | 获取相关参数的方法或函数 需要返回的对象包含以下几个字段{appId, timestamp, signature, nonceStr}， 如果返回 false 则会中断 |
 | list | <code>array</code> | 接口权限列表 |
 | params | <code>object</code> | 微信分享参数 {title, desc, imgUrl, link, success} |

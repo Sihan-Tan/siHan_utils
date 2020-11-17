@@ -1,7 +1,7 @@
 /*
  * @Author: Tan Xuan
  * @Date: 2020-09-24 11:21:11
- * @LastEditTime: 2020-11-17 11:07:19
+ * @LastEditTime: 2020-11-17 12:52:28
  * @LastEditors: Tan Xuan
  * @Description: 出口文件
  */
@@ -24,7 +24,7 @@ import {
 } from './modules/scroll';
 import { isWeChat, isAndroid, isIOS, isMobile } from './modules/userAgent';
 import { checkBank, checkEmail, checkId, checkPhone } from './modules/verify';
-import { weChatSDK } from './modules/weChat';
+import { weChatSDK } from './modules/wechat';
 
 module.exports = {
   setCookie,

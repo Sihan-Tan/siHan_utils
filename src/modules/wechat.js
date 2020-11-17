@@ -12,7 +12,7 @@ const shareConfig = {
 
 /**
  * 微信分享  该方法需要自行安装依赖 weixin-js-sdk
- * @param {object} wx wx sdk , import wx from 'weixin-js-sdk' 传入这个 wx
+ * @param {object} wx  import wx from 'weixin-js-sdk' 传入这个 wx
  * @param {function} getSign 获取相关参数的方法或函数 需要返回的对象包含以下几个字段{appId, timestamp, signature, nonceStr}， 如果返回 false 则会中断
  * @param {array} list 接口权限列表
  * @param {object} params 微信分享参数 {title, desc, imgUrl, link, success}
