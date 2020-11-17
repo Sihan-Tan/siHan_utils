@@ -1,5 +1,4 @@
 import { isWeChat } from './userAgent';
-import wx from 'weixin-js-sdk';
 
 const shareConfig = {
   title: '微信分享',
@@ -13,15 +12,23 @@ const shareConfig = {
 
 /**
  * 微信分享  该方法需要自行安装依赖 weixin-js-sdk
+ * @param {object} wx wx sdk , import wx from 'weixin-js-sdk' 传入这个 wx
  * @param {function} getSign 获取相关参数的方法或函数 需要返回的对象包含以下几个字段{appId, timestamp, signature, nonceStr}， 如果返回 false 则会中断
- * @param {object} params 微信分享参数 {title, desc, imgUrl, link, success}
  * @param {array} list 接口权限列表
+ * @param {object} params 微信分享参数 {title, desc, imgUrl, link, success}
  */
-export async function wechatSDK(
+export async function weChatSDK(
+  wx,
   getSign,
-  params = {},
-  list = ['updateAppMessageShareData', 'updateTimelineShareData']
+  list = ['updateAppMessageShareData', 'updateTimelineShareData'],
+  params = {}
 ) {
+
+  // 访问渠道为非微信浏览器不调用微信sdk
+  if (!isWeChat()) {
+    return;
+  }
+  
   let payload = {
     title: params.title || shareConfig.title,
     desc: params.desc || shareConfig.desc,
@@ -29,21 +36,6 @@ export async function wechatSDK(
     link: params.link || shareConfig.link,
     success: params.success || shareConfig.success,
   };
-  // 访问渠道为非微信浏览器不调用微信sdk
-  if (!isWeChat()) {
-    return;
-  }
-  // 带hasSign参数时，不执行请求，直接设置分享参数
-  if (payload.hasSign) {
-    delete payload.hasSign;
-    wx.ready(function () {
-      wechatShare(wx, payload);
-    });
-    wx.error(function (err) {
-      console.error('wx:error: ', err);
-    });
-    return;
-  }
 
   const res = await getSign();
 

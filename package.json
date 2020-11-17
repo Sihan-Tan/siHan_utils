@@ -17,6 +17,9 @@
     "helper",
     "nodejs"
   ],
+  "engines": {
+    "node": ">= 10.0.0"
+  },
   "files": [
     "./src",
     "./lib"
