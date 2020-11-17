@@ -17,6 +17,10 @@
     "helper",
     "nodejs"
   ],
+  "files": [
+    "./src",
+    "./lib"
+  ],
   "scripts": {
     "test": "nyc mocha --config .mocharc.json",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

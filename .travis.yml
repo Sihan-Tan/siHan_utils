@@ -23,15 +23,15 @@ script:
   - npm run doc
   - npm run build
 
-deploy:
-  provider: npm
-  email: tanxuan_2013@163.com
-  api_key: "$NPM_TOKEN"
-  skip_cleanup: true
-  keep-history: true
-  local-dir: lib
-  on:
-    branch: master
+# deploy:
+#   provider: npm
+#   email: tanxuan_2013@163.com
+#   api_key: "$NPM_TOKEN"
+#   skip_cleanup: true
+#   keep-history: true
+#   local-dir: lib
+#   on:
+#     branch: master
 
 after_deploy: npm run coverage
 # stages:
