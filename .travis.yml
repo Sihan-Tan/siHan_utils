@@ -22,9 +22,8 @@ git:
 script:
   - npm run jsdoc
   - npm run build
-  
-after_success: npm run coverage
 
+after_success: npm run test && npm run coverage
 # deploy:
 #   provider: npm
 #   email: tanxuan_2013@163.com
