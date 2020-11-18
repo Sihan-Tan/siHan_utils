@@ -1,3 +1,35 @@
+## Constants
+
+<dl>
+<dt><a href="#isString">isString</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是String</p>
+</dd>
+<dt><a href="#isNumber">isNumber</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是Number</p>
+</dd>
+<dt><a href="#isDate">isDate</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是Date</p>
+</dd>
+<dt><a href="#isRegExp">isRegExp</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是RegExp</p>
+</dd>
+<dt><a href="#isArray">isArray</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是Array</p>
+</dd>
+<dt><a href="#isSymbol">isSymbol</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是Symbol</p>
+</dd>
+<dt><a href="#isFunction">isFunction</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是Function</p>
+</dd>
+<dt><a href="#now">now</a> ⇒ <code>number</code></dt>
+<dd><p>获取当前时间戳</p>
+</dd>
+<dt><a href="#delay">delay</a></dt>
+<dd><p>延迟函数</p>
+</dd>
+</dl>
+
 ## Functions
 
 <dl>
@@ -52,6 +84,27 @@
 <dt><a href="#getVisibleTop">getVisibleTop(element)</a> ⇒ <code>number</code></dt>
 <dd><p>获取当前元素到上边界的距离</p>
 </dd>
+<dt><a href="#isObject">isObject(obj)</a> ⇒ <code>boolean</code></dt>
+<dd><p>是否是对象</p>
+</dd>
+<dt><a href="#isNull">isNull(obj)</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是null</p>
+</dd>
+<dt><a href="#isUndefined">isUndefined(obj)</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是undefined</p>
+</dd>
+<dt><a href="#isBoolean">isBoolean(obj)</a> ⇒ <code>boolean</code></dt>
+<dd><p>是不是Boolean</p>
+</dd>
+<dt><a href="#has">has(obj, key)</a> ⇒ <code>boolean</code></dt>
+<dd><p>判断当前对象上是否有该属性</p>
+</dd>
+<dt><a href="#debounce">debounce(func, wait, immediate)</a> ⇒ <code>object</code></dt>
+<dd><p>防抖函数</p>
+</dd>
+<dt><a href="#throttle">throttle(func, wait, opts)</a> ⇒ <code>object</code></dt>
+<dd><p>节流函数</p>
+</dd>
 <dt><a href="#isWeChat">isWeChat()</a> ⇒ <code>boolean</code></dt>
 <dd><p>是不是微信</p>
 </dd>
@@ -76,10 +129,106 @@
 <dt><a href="#checkPhone">checkPhone(phone)</a> ⇒ <code>boolean</code></dt>
 <dd><p>检验手机号是否正确</p>
 </dd>
-<dt><a href="#weChatSDK">weChatSDK(wx, getSign, list, params)</a></dt>
+<dt><a href="#weChatShare">weChatShare(wx, getSign, list, params)</a></dt>
 <dd><p>微信分享  该方法需要自行安装依赖 weixin-js-sdk</p>
 </dd>
 </dl>
+
+<a name="isString"></a>
+
+## isString ⇒ <code>boolean</code>
+是不是String
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isNumber"></a>
+
+## isNumber ⇒ <code>boolean</code>
+是不是Number
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isDate"></a>
+
+## isDate ⇒ <code>boolean</code>
+是不是Date
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isRegExp"></a>
+
+## isRegExp ⇒ <code>boolean</code>
+是不是RegExp
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isArray"></a>
+
+## isArray ⇒ <code>boolean</code>
+是不是Array
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isSymbol"></a>
+
+## isSymbol ⇒ <code>boolean</code>
+是不是Symbol
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isFunction"></a>
+
+## isFunction ⇒ <code>boolean</code>
+是不是Function
+
+**Kind**: global constant  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="now"></a>
+
+## now ⇒ <code>number</code>
+获取当前时间戳
+
+**Kind**: global constant  
+<a name="delay"></a>
+
+## delay
+延迟函数
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| func | <code>function</code> | 需要延迟执行的函数 |
+| wait | <code>number</code> | 等待时间 ms |
+| args | <code>boolean</code> | 延时函数的参数，可选 |
 
 <a name="setCookie"></a>
 
@@ -281,6 +430,90 @@ eg.  parseFormatNum("123456",1); 结果为：123,456.0
 | --- | --- | --- |
 | element | <code>dom</code> | dom元素 |
 
+<a name="isObject"></a>
+
+## isObject(obj) ⇒ <code>boolean</code>
+是否是对象
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isNull"></a>
+
+## isNull(obj) ⇒ <code>boolean</code>
+是不是null
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isUndefined"></a>
+
+## isUndefined(obj) ⇒ <code>boolean</code>
+是不是undefined
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="isBoolean"></a>
+
+## isBoolean(obj) ⇒ <code>boolean</code>
+是不是Boolean
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>\*</code> | 
+
+<a name="has"></a>
+
+## has(obj, key) ⇒ <code>boolean</code>
+判断当前对象上是否有该属性
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>object</code> | 
+| key | <code>string</code> | 
+
+<a name="debounce"></a>
+
+## debounce(func, wait, immediate) ⇒ <code>object</code>
+防抖函数
+
+**Kind**: global function  
+**Returns**: <code>object</code> - 返回一个debounce的执行句柄，拥有cancel方法，执行可取消防抖  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| func | <code>function</code> | 执行函数 |
+| wait | <code>number</code> | 等待时间 ms |
+| immediate | <code>boolean</code> | 是否立即触发，可选，默认false |
+
+<a name="throttle"></a>
+
+## throttle(func, wait, opts) ⇒ <code>object</code>
+节流函数
+
+**Kind**: global function  
+**Returns**: <code>object</code> - 返回一个throttle的执行句柄，拥有cancel方法，执行可取消节流  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| func | <code>function</code> | 执行函数 |
+| wait | <code>number</code> | 触发间隔 ms |
+| opts | <code>object</code> | {first: boolean, last: boolean} 可选参数, first控制第一次是否触发，默认true；last控制最后一次是否执行，默认为true |
+
 <a name="isWeChat"></a>
 
 ## isWeChat() ⇒ <code>boolean</code>
@@ -350,9 +583,9 @@ eg.  parseFormatNum("123456",1); 结果为：123,456.0
 | --- | --- | --- |
 | phone | <code>string</code> | 手机号 |
 
-<a name="weChatSDK"></a>
+<a name="weChatShare"></a>
 
-## weChatSDK(wx, getSign, list, params)
+## weChatShare(wx, getSign, list, params)
 微信分享  该方法需要自行安装依赖 weixin-js-sdk
 
 **Kind**: global function  

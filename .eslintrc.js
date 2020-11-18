@@ -126,12 +126,12 @@ module.exports = {
     'no-sequences': 'error',
     'no-throw-literal': 'error',
     'no-unmodified-loop-condition': 'error',
-    'no-unused-expressions': [
-      'error', {
-        allowShortCircuit: true,
-        allowTernary: true,
-        allowTaggedTemplates: true
-      }],
+    // 'no-unused-expressions': [
+    //   'error', {
+    //     allowShortCircuit: true,
+    //     allowTernary: true,
+    //     allowTaggedTemplates: true
+    //   }],
     'no-unused-labels': 'error',
     'no-useless-call': 'error',
     'no-useless-concat': 'error',
@@ -284,8 +284,8 @@ module.exports = {
         objectsInObjects: true
       }],
     'object-property-newline': 'off',
-    'one-var': ['error', 'never'],
-    'one-var-declaration-per-line': ['error', 'always'],
+    // 'one-var': ['error', 'never'],
+    // 'one-var-declaration-per-line': ['error', 'always'],
     'operator-assignment': 'off',
     'operator-linebreak': 'off',
     'padded-blocks': 'off',

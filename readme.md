@@ -24,7 +24,13 @@ https://github.com/Sihan-Tan/siHan_utils/blob/master/docs/index.md
 
 # Example
 
+## 在webpack中使用
 ```javascript
 import { randomNumber } from "sihan-utils";
+console.log(randomNumber(1, 100)); // a number between 1 and 100
+```
+## 在node中使用
+```javascript
+const { randomNumber } = require("sihan-utils");
 console.log(randomNumber(1, 100)); // a number between 1 and 100
 ```

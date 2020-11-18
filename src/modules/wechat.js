@@ -4,7 +4,7 @@ const shareConfig = {
   title: '微信分享',
   desc: '微信分享简介。',
   imgUrl: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-  link: document.URL,
+  link: 'https://weixin.qq.com/',
   success: function () {
     console.log('success');
   },
@@ -17,7 +17,7 @@ const shareConfig = {
  * @param {array} list 接口权限列表
  * @param {object} params 微信分享参数 {title, desc, imgUrl, link, success}
  */
-export async function weChatSDK(
+export async function weChatShare(
   wx,
   getSign,
   list = ['updateAppMessageShareData', 'updateTimelineShareData'],
@@ -54,14 +54,14 @@ export async function weChatSDK(
     jsApiList,
   });
   wx.ready(function () {
-    wechatShare(wx, payload);
+    share(wx, payload);
   });
   wx.error(function (res) {
     console.log('err', res);
   });
 }
 
-function wechatShare(wx, payload) {
+function share(wx, payload) {
   wx.updateTimelineShareData(payload);
   wx.updateAppMessageShareData(payload);
 }
