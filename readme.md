@@ -37,3 +37,7 @@ console.log(randomNumber(1, 100)); // a number between 1 and 100
 const { randomNumber } = require("sihan-utils");
 console.log(randomNumber(1, 100)); // a number between 1 and 100
 ```
+
+# Changelog
+
+https://github.com/Sihan-Tan/siHan_utils/blob/master/changelog.md
