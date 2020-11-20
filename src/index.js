@@ -40,6 +40,7 @@ import {
   isFunction,
   isSymbol
 } from './modules/tag';
+import { clone } from './modules/clone';
 
 module.exports = {
   setCookie,
@@ -83,7 +84,8 @@ module.exports = {
   isRegExp,
   isArray,
   isFunction,
-  isSymbol
+  isSymbol,
+  clone
 };
 
 export default {
@@ -128,5 +130,6 @@ export default {
   isRegExp,
   isArray,
   isFunction,
-  isSymbol
+  isSymbol,
+  clone
 };
