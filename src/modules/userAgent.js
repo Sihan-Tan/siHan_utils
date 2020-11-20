@@ -10,7 +10,7 @@
  * @returns {boolean}
  */
 export function isWeChat(ua) {
-  const userAgent = global.navigator.userAgent || ua;
+  const userAgent = ua || navigator.userAgent;
   return userAgent.match(/MicroMessenger/i) ? true : false;
 }
 
@@ -19,7 +19,7 @@ export function isWeChat(ua) {
  * @returns {boolean}
  */
 export function isAndroid(ua) {
-  const userAgent = global.navigator.userAgent || ua;
+  const userAgent = ua || navigator.userAgent;
   return userAgent.match(/Android/i) ? true : false;
 }
 
@@ -28,7 +28,7 @@ export function isAndroid(ua) {
  * @returns {boolean}
  */
 export function isIOS(ua) {
-  const userAgent = global.navigator.userAgent || ua;
+  const userAgent = ua || navigator.userAgent;
   return userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
 }
 
@@ -37,6 +37,6 @@ export function isIOS(ua) {
  * @returns {boolean}
  */
 export function isMobile(ua) {
-  const userAgent = global.navigator.userAgent || ua;
+  const userAgent = ua || navigator.userAgent;
   return userAgent.match(/Mobile/i) ? true : false;
 }

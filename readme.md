@@ -41,3 +41,11 @@ console.log(randomNumber(1, 100)); // a number between 1 and 100
 # Changelog
 
 https://github.com/Sihan-Tan/siHan_utils/blob/master/changelog.md
+
+# Last
+
+新增 clone 方法，暂只支持 number, string, boolean, null, undefined, array, regexp, object
+
+# Tips
+
+cookie 和 element,scroll 相关的方法

@@ -33,6 +33,9 @@
 ## Functions
 
 <dl>
+<dt><a href="#clone">clone(target)</a> ⇒</dt>
+<dd><p>克隆传入的参数</p>
+</dd>
 <dt><a href="#setCookie">setCookie(name, value, day)</a></dt>
 <dd><p>设置cookie</p>
 </dd>
@@ -229,6 +232,18 @@
 | func | <code>function</code> | 需要延迟执行的函数 |
 | wait | <code>number</code> | 等待时间 ms |
 | args | <code>boolean</code> | 延时函数的参数，可选 |
+
+<a name="clone"></a>
+
+## clone(target) ⇒
+克隆传入的参数
+
+**Kind**: global function  
+**Returns**: 克隆的值  
+
+| Param | Type |
+| --- | --- |
+| target | <code>\*</code> | 
 
 <a name="setCookie"></a>
 
