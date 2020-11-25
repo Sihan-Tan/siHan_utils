@@ -44,8 +44,11 @@ https://github.com/Sihan-Tan/siHan_utils/blob/master/changelog.md
 
 # Last
 
-新增 clone 方法，暂只支持 number, string, boolean, null, undefined, array, regexp, object
+- 增加了 amd, esm, iife, umd 的打包输出
+- 移除 cookie 和 dom 相关方法
 
-# Tips
+# Warning
 
-cookie 和 element,scroll 相关的方法
+移除了 cookie 和 dom 相关的方法
+
+https://github.com/Sihan-Tan/siHan_utils/blob/master/remove.md

@@ -36,15 +36,6 @@
 <dt><a href="#clone">clone(target)</a> ⇒</dt>
 <dd><p>克隆传入的参数</p>
 </dd>
-<dt><a href="#setCookie">setCookie(name, value, day)</a></dt>
-<dd><p>设置cookie</p>
-</dd>
-<dt><a href="#getCookie">getCookie(name)</a> ⇒ <code>string</code></dt>
-<dd><p>获取 cookie 键对应的值</p>
-</dd>
-<dt><a href="#deleteCookie">deleteCookie(name)</a></dt>
-<dd><p>删除cookie中的name</p>
-</dd>
 <dt><a href="#formatSecondToTime">formatSecondToTime(time)</a> ⇒ <code>object</code></dt>
 <dd><p>将秒转换成时间</p>
 </dd>
@@ -65,27 +56,6 @@
 </dd>
 <dt><a href="#randomNumber">randomNumber(min, max)</a> ⇒ <code>number</code></dt>
 <dd><p>返回一个区间内的随机数</p>
-</dd>
-<dt><a href="#getScrollTop">getScrollTop(element)</a> ⇒ <code>number</code></dt>
-<dd><p>获取当前dom的scrollTop值</p>
-</dd>
-<dt><a href="#setScrollTop">setScrollTop(element, value)</a></dt>
-<dd><p>设置当前dom的scrollTop值</p>
-</dd>
-<dt><a href="#getRootScrollTop">getRootScrollTop()</a> ⇒</dt>
-<dd><p>获取根节点的scrollTop</p>
-</dd>
-<dt><a href="#setRootScrollTop">setRootScrollTop(value)</a></dt>
-<dd><p>获取根节点的scrollTop</p>
-</dd>
-<dt><a href="#getElementTop">getElementTop(element)</a> ⇒ <code>number</code></dt>
-<dd><p>获取当前节点到上边界的距离</p>
-</dd>
-<dt><a href="#getVisibleHeight">getVisibleHeight(element)</a> ⇒ <code>number</code></dt>
-<dd><p>获取当前可视窗口的高度</p>
-</dd>
-<dt><a href="#getVisibleTop">getVisibleTop(element)</a> ⇒ <code>number</code></dt>
-<dd><p>获取当前元素到上边界的距离</p>
 </dd>
 <dt><a href="#isObject">isObject(obj)</a> ⇒ <code>boolean</code></dt>
 <dd><p>是否是对象</p>
@@ -245,42 +215,6 @@
 | --- | --- |
 | target | <code>\*</code> | 
 
-<a name="setCookie"></a>
-
-## setCookie(name, value, day)
-设置cookie
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | 名称 |
-| value | <code>string</code> | 值 |
-| day | <code>number</code> | 天数 |
-
-<a name="getCookie"></a>
-
-## getCookie(name) ⇒ <code>string</code>
-获取 cookie 键对应的值
-
-**Kind**: global function  
-**Returns**: <code>string</code> - cookie 键对应的值  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | 键 |
-
-<a name="deleteCookie"></a>
-
-## deleteCookie(name)
-删除cookie中的name
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | 键 |
-
 <a name="formatSecondToTime"></a>
 
 ## formatSecondToTime(time) ⇒ <code>object</code>
@@ -370,80 +304,6 @@ eg.  parseFormatNum("123456",1); 结果为：123,456.0
 | --- | --- | --- |
 | min | <code>number</code> | 起始值 |
 | max | <code>number</code> | 结束值 |
-
-<a name="getScrollTop"></a>
-
-## getScrollTop(element) ⇒ <code>number</code>
-获取当前dom的scrollTop值
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>dom</code> | Dom元素 |
-
-<a name="setScrollTop"></a>
-
-## setScrollTop(element, value)
-设置当前dom的scrollTop值
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>dom</code> | Dom元素 |
-| value | <code>number</code> | scrollTop值 |
-
-<a name="getRootScrollTop"></a>
-
-## getRootScrollTop() ⇒
-获取根节点的scrollTop
-
-**Kind**: global function  
-**Returns**: 根节点的scrollTop值  
-<a name="setRootScrollTop"></a>
-
-## setRootScrollTop(value)
-获取根节点的scrollTop
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| value | <code>number</code> | 
-
-<a name="getElementTop"></a>
-
-## getElementTop(element) ⇒ <code>number</code>
-获取当前节点到上边界的距离
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>dom</code> | Dom元素 |
-
-<a name="getVisibleHeight"></a>
-
-## getVisibleHeight(element) ⇒ <code>number</code>
-获取当前可视窗口的高度
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>dom</code> | Dom元素 |
-
-<a name="getVisibleTop"></a>
-
-## getVisibleTop(element) ⇒ <code>number</code>
-获取当前元素到上边界的距离
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>dom</code> | dom元素 |
 
 <a name="isObject"></a>
 

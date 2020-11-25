@@ -1,3 +1,12 @@
+## 1.1.2
+
+- 增加了 amd, esm, iife, umd 的打包输出
+- 移除 cookie 和 dom 相关方法
+
+## 1.1.1
+
+新增 clone 方法，暂只支持 number, string, boolean, null, undefined, array, regexp, object
+
 ## 1.1.0
 
 - 更改版本号错误
