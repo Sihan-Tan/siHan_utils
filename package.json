@@ -21,7 +21,12 @@
     "node": ">= 10.0.0"
   },
   "files": [
-    "./lib"
+    "lib",
+    "lib/index.amd.js",
+    "lib/index.esm.js",
+    "lib/index.iife.js",
+    "lib/index.js",
+    "lib/index.umd.js"
   ],
   "scripts": {
     "test": "nyc mocha --config .mocharc.json",

@@ -75,7 +75,7 @@ describe("date.js", function () {
 
   describe("calcAge", function () {
     it("未满月", function () {
-      const { age, unit } = calcAge("2020-10-28");
+      const { age, unit } = calcAge("2020-11-28");
       expect(age).to.equal("");
       expect(unit).to.equal("未满月");
     });
@@ -85,7 +85,7 @@ describe("date.js", function () {
       expect(unit).to.equal("个月");
     });
     it("11个月", function () {
-      const { age, unit } = calcAge("2019-12-03");
+      const { age, unit } = calcAge("2019-12-20");
       expect(age).to.equal(11);
       expect(unit).to.equal("个月");
     });
